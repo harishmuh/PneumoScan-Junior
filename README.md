@@ -3,14 +3,10 @@
 </p>
 
 
-# **PneumoScan-Junior**
-Explainable AI for Pediatric Pneumonia Detection from Chest X-ray Images
-
-<p align="center">
-
+### **PneumoScan-Junior**
 AI-powered web application for automatic pediatric chest X-ray classification using a deep learning model based on **Xception CNN** with **Grad-CAM explainability**, developed for educational and research purposes.
 
-</p>
+
 
 <p align="center">
 
@@ -24,38 +20,41 @@ AI-powered web application for automatic pediatric chest X-ray classification us
 
 
 
-
-
 ---
 ### 📖 Project Overview
 
 Pediatric pneumonia remains one of the leading causes of illness and mortality among children worldwide. Chest X-ray imaging is one of the primary diagnostic tools used to identify pneumonia; however, interpreting radiographs requires clinical expertise and may be challenging in resource-limited settings.
 
-PneumoScan Junior is a deep learning application that demonstrates how artificial intelligence can assist in the automated classification of pediatric chest X-ray images. The application integrates a pretrained **Xception Convolutional Neural Network (CNN)** with an interactive Streamlit interface, enabling users to upload chest radiographs and obtain real-time predictions.
+PneumoScan Junior is an end-to-end deep learning application that demonstrates how artificial intelligence can assist in the automated classification of pediatric chest X-ray images. The application integrates a pretrained **Xception Convolutional Neural Network (CNN)** with an interactive Streamlit interface, enabling users to upload chest radiographs and obtain real-time predictions.
 
 Beyond image classification, the application incorporates **Gradient-weighted Class Activation Mapping (Grad-CAM)** to visualize the image regions that most strongly influence the model's prediction. This explainability component provides greater transparency into the decision-making process and helps users better understand how the model reaches its conclusions.
 
 
+### ✨ Features
 
-
+- Upload pediatric chest X-ray images
+- Automatic pneumonia prediction
+- Prediction confidence score
+- Explainable AI using Grad-CAM
+- Sample image gallery
+- Streamlit web interface
 
 ### 📸 Application Preview
 
-**Home**
-
+**🏠 Home Interface**
+> Upload a pediatric chest X-ray or select one of the provided sample images.
 <p align="center">
   <img src="assets/v3_home.PNG" width="60%">
 </p>
 
-
-**Select a sample or upload a chest X-ray image and click 'run prediction' to see the inference result**
-
+**🤖 AI Prediction**
+> The Xception CNN predicts Normal or Pneumonia and reports the associated confidence score.
 <p align="center">
   <img src="assets/v3_PneumoScanJ_prediction_demo_pneumonia_case.PNG" width="60%">
 </p>
 
-**Grad-CAM explanation**
-
+**🔥 Explainable AI (Grad-CAM)**
+> Grad-CAM highlights the image regions that most influenced the model's prediction.
 <p align="center">
   <img src="assets/v3_PneumoScanJ_gradcam_demo_pneumonia_case.PNG" width="60%">
 </p>
@@ -70,9 +69,9 @@ Beyond image classification, the application incorporates **Gradient-weighted Cl
 
 ---
 
-**⚠️ Disclaimer**
-
-PneumoScan Junior is intended **for educational and research purposes only**.
-It is **not** a medical device and **must not** be used for clinical diagnosis or treatment decisions.
+>**⚠️ Disclaimer**
+>
+>PneumoScan Junior is intended **for educational and research purposes only**.
+>It is **not** a medical device and **must not** be used for clinical diagnosis or treatment decisions.
 
 
