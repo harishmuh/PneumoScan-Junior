@@ -36,20 +36,30 @@ PneumoScan Junior is a deep learning application that demonstrates how artificia
 Beyond image classification, the application incorporates **Gradient-weighted Class Activation Mapping (Grad-CAM)** to visualize the image regions that most strongly influence the model's prediction. This explainability component provides greater transparency into the decision-making process and helps users better understand how the model reaches its conclusions.
 
 
+
+
+
+### 📸 Application Preview
+
+**Load sample image**
+
+<p align="center">
+  <img src="assets/v2_home.png" width="60%">
+</p>
+
+
+
 ### 🌐 Live Demo
 
 **Try the application here:**
 
 **🔗 https://pneumoscan-junior.streamlit.app**
 
-
-### 📸 Application Preview
-
-
 ---
-> **⚠️ Disclaimer**
->
-> PneumoScan Junior is intended **for educational and research purposes only**.
-> It is **not** a medical device and **must not** be used for clinical diagnosis or treatment decisions.
 
----
+**⚠️ Disclaimer**
+
+PneumoScan Junior is intended **for educational and research purposes only**.
+It is **not** a medical device and **must not** be used for clinical diagnosis or treatment decisions.
+
+
