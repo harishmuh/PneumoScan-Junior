@@ -1,4 +1,4 @@
-# 🧠 Model Development
+<img width="507" height="633" alt="image" src="https://github.com/user-attachments/assets/8ee55a71-60f1-4392-b9dc-2fe51a099fac" /># 🧠 Model Development
 
 This directory documents the development process of the deep learning model used in the **PneumoScan Junior App**.
 
@@ -10,7 +10,7 @@ Rather than selecting a single architecture from the outset, multiple convolutio
 
 ---
 
-# 📂 Dataset
+## 📂 Dataset
 
 The model was trained using a publicly available pediatric chest X-ray dataset containing two classes:
 
@@ -29,7 +29,7 @@ The test set remained completely unseen during model development and was used on
 
 ---
 
-# ⚙️ Preprocessing
+## ⚙️ Preprocessing
 
 Prior to training, the following preprocessing pipeline was applied:
 
@@ -43,7 +43,7 @@ Several experiments explored different preprocessing strategies to improve model
 
 ---
 
-# 🏗️ Five Candidate Models
+## 🏗️ Five Candidate Models
 
 Five CNN architectures were investigated throughout the development process.
 
@@ -57,9 +57,12 @@ Five CNN architectures were investigated throughout the development process.
 
 Each model was trained and evaluated independently using identical evaluation metrics.
 
+
+
+
 ---
 
-# 📊 Model Comparison
+## 📊 Performance Comparison
 
 Model performance was assessed using multiple evaluation metrics rather than classification accuracy alone.
 
@@ -80,7 +83,7 @@ The comparison of multiple architectures helped ensure that the final model sele
 
 ---
 
-# ✅ Why Xception Was Selected
+## ✅ Why Xception Was Selected
 
 Among the evaluated architectures, **Xception** demonstrated the strongest overall performance.
 
@@ -97,13 +100,57 @@ These characteristics made Xception the most suitable architecture for deploymen
 
 ---
 
-# 🔥 Explainability with Grad-CAM
+## Model Architecture
+
+The final model is based on the pretrained Xception architecture with a lightweight custom classification head.
+
+Input (224×224×3)
+        │
+        ▼
+Pretrained Xception
+(Feature Extraction)
+        │
+        ▼
+Flatten
+        │
+        ▼
+Dense (198)
+        │
+        ▼
+Dense (128)
+        │
+        ▼
+Dropout
+        │
+        ▼
+Sigmoid Output
+
+
+## Training curves
+
+Figure Training curves
+
+The training history indicates rapid convergence within the first few epochs.
+
+Training and validation accuracy increased consistently, while the corresponding losses decreased and stabilized without evidence of severe overfitting.
+
+
+
+## ROC Curve
+
+Figure ROC curve
+
+---
+
+## 🔥 Explainability with Grad-CAM
 
 To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-CAM) was incorporated into the development pipeline.
 
 Grad-CAM generates visual heatmaps highlighting image regions that most strongly influenced the model's prediction.
 
 This provides qualitative insight into model behavior and helps users better understand the decision-making process.
+
+Figure Grad CAM
 
 > Grad-CAM illustrates model attention rather than providing a definitive localization of disease and should not be interpreted as a clinical diagnosis.
 
