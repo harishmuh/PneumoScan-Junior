@@ -79,6 +79,10 @@ Beyond image classification, the application incorporates **Gradient-weighted Cl
 
 ## 🌐 Live Demo
 
+## 🎥 Application Demo
+
+[![Watch the Demo](assets/v3_PneumoScanJ_prediction_demo_pneumonia_case.PNG)](https://raw.githubusercontent.com/harishmuh/PneumoScan-Junior/main/assets/demo_video.mp4)
+
 **Try the application here:**
 
 **🔗 https://pneumoscan-junior.streamlit.app**
