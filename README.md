@@ -270,5 +270,4 @@ It is **not** a medical device and **must not** be used for clinical diagnosis o
 
 ## 📄 License
 
-Released under the **MIT License**. A `LICENSE` file should be added to the
-repository root to make this explicit (the badge above links to it).
+Released under the Creative Commons NonCommercial (CC BY-NC 4.0).
