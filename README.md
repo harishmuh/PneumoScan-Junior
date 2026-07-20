@@ -23,8 +23,7 @@ AI-powered web application for automatic pediatric chest X-ray classification us
 
 - [Project Overview](#-project-overview)
 - [Features](#-features)
-- [Application Preview](#-application-preview)
-- [Live Demo](#-live-demo)
+- [Application Demo](#-application-demo)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
@@ -33,6 +32,9 @@ AI-powered web application for automatic pediatric chest X-ray classification us
   - [Option B — Run in Production with Docker](#option-b--run-in-production-with-docker)
   - [Option C — Run in Development with Docker (Live Reload)](#option-c--run-in-development-with-docker-live-reload)
 - [Configuration](#-configuration)
+  - [Host Port](#host-port)
+  - [Build-time Variables](#build-time-variables)
+  - [Cross-platform Builds](#cross-platform-builds)
 - [Makefile Command Reference](#-makefile-command-reference)
 - [The Trained Model](#-the-trained-model)
 - [Architecture Decisions](#-architecture-decisions)
@@ -57,35 +59,17 @@ Beyond image classification, the application incorporates **Gradient-weighted Cl
 - 🐳 **Container-ready** — production and development Docker workflows via a single multi-stage Dockerfile.
 - ⚡ **Live-reload dev environment** — edit source on the host and see changes without rebuilding the image.
 
-## 📸 Application Preview
 
-**🏠 Home Interface**
-> Upload a pediatric chest X-ray or select one of the provided sample images.
+## 🚀 Application Demo
+
+<h4 align="center">🎥 Application Preview</h4>
+
 <p align="center">
-  <img src="assets/v3_home.PNG" width="60%">
-</p>
+  <img src="assets/application_demo.gif"
+       alt="PneumoScan Junior Demo"
+       width="900">
 
-**🤖 AI Prediction**
-> The Xception CNN predicts Normal or Pneumonia and reports the associated confidence score.
-<p align="center">
-  <img src="assets/v3_PneumoScanJ_prediction_demo_pneumonia_case.PNG" width="60%">
-</p>
-
-**🔥 Explainable AI (Grad-CAM)**
-> Grad-CAM highlights the image regions that most influenced the model's prediction.
-<p align="center">
-  <img src="assets/v3_PneumoScanJ_gradcam_demo_pneumonia_case.PNG" width="60%">
-</p>
-
-## 🌐 Live Demo
-
-## 🎥 Application Demo
-
-[![Watch the Demo](https://raw.githubusercontent.com/harishmuh/PneumoScan-Junior/main/assets/demo_video.mp4)
-
-**Try the application here:**
-
-**🔗 https://pneumoscan-junior.streamlit.app**
+Try the application here: **🔗 https://pneumoscan-junior.streamlit.app**
 
 ## 🧰 Tech Stack
 
@@ -122,7 +106,7 @@ PneumoScan-Junior/
 
 ## 🚀 Getting Started
 
-### Prerequisites
+#### Prerequisites
 
 - **For local Python:** Python 3.11
 - **For Docker:** Docker Engine (or Podman) with Compose (`docker compose` plugin or the standalone `docker-compose` binary — the Makefile auto-detects either)
@@ -132,7 +116,7 @@ PneumoScan-Junior/
 > automatically from GitHub Releases on first use, or baked into the production
 > image at build time. See [The Trained Model](#-the-trained-model).
 
-### Option A — Run Locally with Python
+#### Option A — Run Locally with Python
 
 For quick local experimentation without Docker:
 
@@ -151,7 +135,7 @@ streamlit run app.py
 
 Then open **http://localhost:8501**.
 
-### Option B — Run in Production with Docker
+#### Option B — Run in Production with Docker
 
 Builds a self-contained, non-root image with the model and source baked in.
 
@@ -168,7 +152,7 @@ make stop       # stop the container
 make remove     # stop and remove the container
 ```
 
-### Option C — Run in Development with Docker (Live Reload)
+#### Option C — Run in Development with Docker (Live Reload)
 
 Bind-mounts your working directory into the container and enables Streamlit
 live-reload, so **code edits are reflected without rebuilding the image**.
@@ -191,9 +175,9 @@ make dev-down   # stop and remove the dev container
 > You only need to rebuild (`make dev`) when dependencies in `requirements.txt`
 > change — not for source edits.
 
-## ⚙️ Configuration
+### ⚙️ Configuration
 
-### Host port
+#### Host port
 
 The host port defaults to `58501` (container always listens on `8501`).
 Override it per command:
@@ -203,7 +187,7 @@ make start PORT=9000     # production on http://localhost:9000
 make dev   PORT=9000     # development on http://localhost:9000
 ```
 
-### Build-time variables
+#### Build-time variables
 
 Overridable via `--build-arg` (see the header of the [Dockerfile](Dockerfile)):
 
@@ -223,7 +207,7 @@ docker build \
   --build-arg MODEL_URL=https://example.com/releases/my_model.keras \
   -t pneumoscan-junior:latest .
 
-# With docker compose (the same flag works)
+# With Docker Compose (the same flag works)
 docker compose build --build-arg APP_PORT=8501
 
 # Via the Makefile — production
@@ -233,14 +217,14 @@ make build APP_PORT=8501 PORT=58501 BUILD_ARGS="--build-arg MODEL_FILENAME=my_mo
 make dev APP_PORT=8501 PORT=58501 BUILD_ARGS="--build-arg MODEL_FILENAME=my_model.keras"
 ```
 
-### Cross-platform builds
+#### Cross-platform builds
 
 ```bash
 make build PLATFORM=linux/amd64   # cross-build for x86_64 hosts
 make build NO_CACHE=1             # force a clean rebuild
 ```
 
-## 📋 Makefile Command Reference
+### 📋 Makefile Command Reference
 
 Run `make help` to see this list at any time.
 
