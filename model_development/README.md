@@ -1,4 +1,4 @@
-<img width="507" height="633" alt="image" src="https://github.com/user-attachments/assets/8ee55a71-60f1-4392-b9dc-2fe51a099fac" /># 🧠 Model Development
+# 🧠 Model Development
 
 This directory documents the development process of the deep learning model used in the **PneumoScan Junior App**.
 
