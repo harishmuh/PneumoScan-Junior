@@ -1,4 +1,4 @@
-# 🧠 Model Development
+# 🧠 Model Development (under construction)
 
 This directory documents the development process of the deep learning model used in the **PneumoScan Junior App**.
 
