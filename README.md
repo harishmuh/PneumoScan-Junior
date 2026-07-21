@@ -25,7 +25,8 @@ AI-powered web application for automatic pediatric chest X-ray classification us
 - [Features](#-features)
 - [Application Demo](#-application-demo)
 - [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
+- [Model Development](#-model-development)
+- [Repository Structure](#-repository-structure)
 - [Getting Started](#-getting-started)
   - [Prerequisites](#prerequisites)
   - [Option A — Run Locally with Python](#option-a--run-locally-with-python)
@@ -88,8 +89,16 @@ Try the application here: **🔗 https://pneumoscan-junior.streamlit.app**
 | Containerization | Docker (multi-stage), Docker Compose |
 
 ---
+## 🧠 Model Development
 
-## 📂 Project Structure
+- The deep learning model used in PneumoScan Junior was developed through a comparative study of five convolutional neural network (CNN) architectures, including custom CNNs and transfer learning models (VGG16 and Xception).
+
+- Candidate models were evaluated using multiple performance metrics, with particular emphasis on **Balanced Accuracy** and **ROC-AUC** because of the imbalanced nature of the dataset. The final deployed model is based on **Xception**, selected for its strong overall classification performance and balanced predictive capability.
+
+- Detailed description of the development process, model comparison, Grad-CAM analysis, and training notebook ➡️ **[View the Model Development Documentation](https://github.com/harishmuh/PneumoScan-Junior/tree/main/model_development)**
+
+
+## 📂 Repository Structure
 
 ```
 PneumoScan-Junior/
@@ -104,6 +113,10 @@ PneumoScan-Junior/
 ├── requirements.txt        # Python dependencies
 ├── sample_images/          # Example X-rays (normal / pneumonia)
 ├── assets/                 # Banner and screenshots
+├── model_development/
+│   ├── README.md          # Model development documentation
+│   ├── notebooks/         # Training notebook
+│   └── figures/           # Training curves, ROC, Grad-CAM, etc.
 ├── Dockerfile              # Multi-stage build (dev + prod targets)
 ├── docker-compose.yml      # Production service definition
 ├── docker-compose.dev.yml  # Development override (bind mount + live reload)
@@ -186,7 +199,7 @@ make dev-down   # stop and remove the dev container
 
 ---
 
-### ⚙️ Configuration
+## ⚙️ Configuration
 
 #### Host port
 
