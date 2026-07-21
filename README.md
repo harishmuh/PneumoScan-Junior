@@ -51,6 +51,8 @@ PneumoScan Junior is an end-to-end deep learning application that demonstrates h
 
 Beyond image classification, the application incorporates **Gradient-weighted Class Activation Mapping (Grad-CAM)** to visualize the image regions that most strongly influence the model's prediction. This explainability component provides greater transparency into the decision-making process and helps users better understand how the model reaches its conclusions.
 
+---
+
 ## ✨ Features
 
 - 🩻 **Chest X-ray classification** — upload a pediatric chest radiograph and get a Normal / Pneumonia prediction with a confidence score.
@@ -59,6 +61,7 @@ Beyond image classification, the application incorporates **Gradient-weighted Cl
 - 🐳 **Container-ready** — production and development Docker workflows via a single multi-stage Dockerfile.
 - ⚡ **Live-reload dev environment** — edit source on the host and see changes without rebuilding the image.
 
+---
 
 ## 🚀 Application Demo
 
@@ -71,6 +74,8 @@ Beyond image classification, the application incorporates **Gradient-weighted Cl
 
 Try the application here: **🔗 https://pneumoscan-junior.streamlit.app**
 
+---
+
 ## 🧰 Tech Stack
 
 | Layer | Technology |
@@ -81,6 +86,8 @@ Try the application here: **🔗 https://pneumoscan-junior.streamlit.app**
 | Image Processing | OpenCV (headless), Pillow |
 | Web UI | Streamlit 1.49 |
 | Containerization | Docker (multi-stage), Docker Compose |
+
+---
 
 ## 📂 Project Structure
 
@@ -103,6 +110,8 @@ PneumoScan-Junior/
 ├── Makefile                # Build / run / dev shortcuts
 └── docs/adr/               # Architecture Decision Records
 ```
+
+---
 
 ## 🚀 Getting Started
 
@@ -175,6 +184,8 @@ make dev-down   # stop and remove the dev container
 > You only need to rebuild (`make dev`) when dependencies in `requirements.txt`
 > change — not for source edits.
 
+---
+
 ### ⚙️ Configuration
 
 #### Host port
@@ -243,6 +254,8 @@ Run `make help` to see this list at any time.
 | `make dev-logs` | Follow dev container logs |
 | `make dev-exec` | Open a shell inside the dev container |
 
+---
+
 ## 🧠 The Trained Model
 
 The Xception model (`Xception_final_gradcam.keras`, ~320 MB) is **gitignored**
@@ -257,16 +270,22 @@ and resolved in one of three ways:
 
 This means the app works whether or not you already have the model on disk.
 
+---
+
 ## 📐 Architecture Decisions
 
 Significant architectural choices are recorded as ADRs in
 [`docs/adr/`](docs/adr/), including
 [why dev and prod share a single multi-stage Dockerfile](docs/adr/0001-single-multistage-dockerfile-for-dev-and-prod.md).
 
+---
+
 ## ⚠️ Disclaimer
 
 PneumoScan Junior is intended **for educational and research purposes only**.
 It is **not** a medical device and **must not** be used for clinical diagnosis or treatment decisions.
+
+---
 
 ## 📄 Acknowledgments
 * Data: https://data.mendeley.com/datasets/rscbjbr9sj/2
