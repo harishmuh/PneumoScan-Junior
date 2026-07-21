@@ -51,15 +51,13 @@ Five CNN architectures were investigated throughout the development process.
 
 The candidate architectures were evaluated under the experimental configurations documented in the training notebook. All models were assessed using the same set of classification metrics to enable performance comparison.
 
---
+---
 
 ## 📈 Model Training
 
-The five candidate architectures were trained and evaluated as separate experiments. The development process included custom CNN architectures, architectural modifications such as Batch Normalization and data augmentation, and transfer learning using pretrained VGG16 and Xception networks.
+* The five candidate architectures were trained and evaluated as separate experiments. The development process included custom CNN architectures, architectural modifications such as Batch Normalization and data augmentation, and transfer learning using pretrained VGG16 and Xception networks.
 
-Model performance was evaluated using Accuracy, Precision, Sensitivity, Specificity, Balanced Accuracy, and ROC-AUC. Because the dataset exhibits class imbalance, particular attention was given to Balanced Accuracy and ROC-AUC when comparing candidate models.
-
-Detailed training configurations and experimental outputs are preserved in the accompanying Jupyter notebook.
+* Model performance was evaluated using Accuracy, Precision, Sensitivity, Specificity, Balanced Accuracy, and ROC-AUC. Because the dataset exhibits class imbalance, particular attention was given to Balanced Accuracy and ROC-AUC when comparing candidate models. Detailed training configurations and experimental outputs are preserved in the accompanying Jupyter notebook.
 
 ---
 
@@ -108,15 +106,10 @@ ROC analysis demonstrates that all candidate models achieved discrimination abov
 
 ## 🏆 Model Selection: Xception
 
-Model selection considered performance across multiple metrics rather than relying on a single evaluation measure.
-
-Although **VGG16 achieved the highest ROC-AUC (96.08%)**, its performance was less balanced at the selected classification threshold, particularly in terms of **Specificity (44.44%)** and **Balanced Accuracy (71.97%)**.
-
-In comparison, **Xception achieved the highest Balanced Accuracy (78.59%)**, together with the highest Accuracy (83.49%), Precision (79.96%), and Specificity (58.97%) among the five candidate models, while maintaining a strong ROC-AUC of 92.11%.
-
-Given the class imbalance in the dataset, this more balanced performance across sensitivity and specificity was prioritized over selecting the model with the highest ROC-AUC alone. Xception was therefore selected as the final model for integration into PneumoScan Junior.
-
-Grad-CAM analysis was subsequently used as a complementary qualitative assessment of model behavior and interpretability.
+* Model selection considered performance across multiple metrics rather than relying on a single evaluation measure. Although **VGG16 achieved the highest ROC-AUC (96.08%)**, its performance was less balanced at the selected classification threshold, particularly in terms of **Specificity (44.44%)** and **Balanced Accuracy (71.97%)**.
+* In comparison, **Xception achieved the highest Balanced Accuracy (78.59%)**, together with the highest Accuracy (83.49%), Precision (79.96%), and Specificity (58.97%) among the five candidate models, while maintaining a strong ROC-AUC of 92.11%.
+* Given the class imbalance in the dataset, this more balanced performance across sensitivity and specificity was prioritized over selecting the model with the highest ROC-AUC alone. Xception was therefore selected as the final model for integration into PneumoScan Junior.
+* In addition, Grad-CAM analysis was subsequently used as a complementary qualitative assessment of model behavior and interpretability.
 
 ---
 
@@ -171,11 +164,10 @@ The training curves show rapid improvement during the early epochs, followed by 
 
 ## 🔥 Explainability (Grad-CAM)
 
-To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-CAM) was incorporated into the development pipeline.
+To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-CAM) was incorporated into the development pipeline. Grad-CAM generates visual heatmaps highlighting image regions that most strongly influenced the model's prediction. This provides qualitative insight into model behavior and helps users better understand the decision-making process.
 
-Grad-CAM generates visual heatmaps highlighting image regions that most strongly influenced the model's prediction.
 
-This provides qualitative insight into model behavior and helps users better understand the decision-making process.
+
 
 ### True Positive Example
 
@@ -197,19 +189,22 @@ This provides qualitative insight into model behavior and helps users better und
 <i>Figure 5. Grad-CAM comparison for a correctly classified normal chest X-ray.</i>
 </p>
 
+* The Grad-CAM examples provide a qualitative comparison of attention patterns across selected candidate architectures. In the representative examples shown, Xception produced relatively coherent activation patterns over thoracic regions compared with the alternative architectures.
 
-To complement the quantitative evaluation, Grad-CAM was used to visualize the image regions contributing most strongly to each prediction. Compared with the other candidate architectures, Xception generally produced more localized and anatomically plausible activation patterns for both pneumonia and normal chest radiographs.
+* These visualizations were used as complementary interpretability evidence rather than as a quantitative measure of model performance. Grad-CAM does not establish that the model learned clinically valid diagnostic reasoning, but it provides insight into the image regions associated with individual predictions.
+
 
 ---
 
 ## 📝 Conclusion
 
-Five CNN-based approaches were investigated for pediatric pneumonia classification, ranging from custom CNN architectures to pretrained transfer-learning models.
+* Five CNN-based approaches were investigated for pediatric pneumonia classification, ranging from custom CNN architectures to pretrained transfer-learning models.
 
-The experiments demonstrated that model selection based on a single metric would lead to different conclusions. VGG16 achieved the highest ROC-AUC, while Xception provided the strongest overall balance at the evaluated classification threshold, achieving the highest Balanced Accuracy, Accuracy, Precision, and Specificity among the candidate models.
+* The experiments demonstrated that model selection based on a single metric would lead to different conclusions. VGG16 achieved the highest ROC-AUC, while Xception provided the strongest overall balance at the evaluated classification threshold, achieving the highest Balanced Accuracy, Accuracy, Precision, and Specificity among the candidate models.
 
-Given the class imbalance and the project's emphasis on balanced classification performance, **Xception was selected as the final model for deployment in PneumoScan Junior**. Grad-CAM was incorporated to provide complementary visual insight into model predictions.
+* Given the class imbalance and the project's emphasis on balanced classification performance, **Xception was selected as the final model for deployment in PneumoScan Junior**. Grad-CAM was incorporated to provide complementary visual insight into model predictions.
 
+## ⚠️ Disclaimer
 This project represents an experimental and educational implementation of deep learning for pediatric chest X-ray classification. The resulting model is not intended to replace clinical interpretation or serve as a validated medical diagnostic system.
 
 
