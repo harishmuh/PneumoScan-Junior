@@ -61,10 +61,6 @@ All models were trained using the same preprocessing pipeline and evaluated inde
 
 ## Model Architecture
 
-The final model is based on the pretrained Xception architecture with a lightweight custom classification head.
-
-
-
 ```text
                      Input Image
                   (224 × 224 × 3)
@@ -92,14 +88,9 @@ The final model is based on the pretrained Xception architecture with a lightwei
           Normal        or       Pneumonia
 ```
 
-
-
 <p align="center">
-<img src="figures/https://github.com/user-attachments/assets/d2e3cecd-786e-47b9-82af-373c92fd2469" width="650">
+<i>Figure 1. Architecture of the final Xception model</i>
 </p>
-
-<img width="424" height="216" alt="image" src="https://github.com/user-attachments/assets/4310d4b7-5b36-415d-90ff-bf9e4de2e5c7" />
-
 
 ## 📈 Training Process
 
@@ -165,7 +156,6 @@ This provides qualitative insight into model behavior and helps users better und
 <i>Figure 5. Grad-CAM comparison for a correctly classified normal chest X-ray.</i>
 </p>
 
-Figure Grad-CAM
 
 > Grad-CAM illustrates model attention rather than providing a definitive localization of disease and should not be interpreted as a clinical diagnosis.
 >
