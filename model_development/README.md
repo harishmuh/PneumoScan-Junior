@@ -1,4 +1,4 @@
-# 🧠 Model Development (under construction)
+# 🧠 Model Development
 
 This directory documents the research and development process of the deep learning model used in the **PneumoScan Junior App**.
 
@@ -47,17 +47,84 @@ Five CNN architectures were investigated throughout the development process.
 | CNN + Data Augmentation | Baseline CNN combined with image augmentation techniques to improve robustness. |
 | CNN + Batch Normalization | Enhanced CNN architecture incorporating Batch Normalization layers for improved optimization and training stability. |
 | VGG16 Transfer Learning | Transfer learning using the pretrained VGG16 architecture. |
-| Xception Transfer Learning | Transfer learning using the pretrained Xception architecture, which ultimately demonstrated the best overall performance. |
+| Xception Transfer Learning | Transfer learning using the pretrained Xception architecture. |
 
-All models were trained using the same preprocessing pipeline and evaluated independently using identical evaluation metrics.
+The candidate architectures were evaluated under the experimental configurations documented in the training notebook. All models were assessed using the same set of classification metrics to enable performance comparison.
 
+--
 
+## 📈 Model Training
 
+The five candidate architectures were trained and evaluated as separate experiments. The development process included custom CNN architectures, architectural modifications such as Batch Normalization and data augmentation, and transfer learning using pretrained VGG16 and Xception networks.
 
+Model performance was evaluated using Accuracy, Precision, Sensitivity, Specificity, Balanced Accuracy, and ROC-AUC. Because the dataset exhibits class imbalance, particular attention was given to Balanced Accuracy and ROC-AUC when comparing candidate models.
+
+Detailed training configurations and experimental outputs are preserved in the accompanying Jupyter notebook.
 
 ---
 
-## Model Architecture
+## 📈 Training Process
+
+### Training curve
+<p align="center">
+    <img src="figures/training_curve.png" width="850">
+</p>
+
+<p align="center">
+<i>Figure 1. Training and validation loss and accuracy of the final Xception model.</i>
+</p>
+
+Figure 1 illustrates the learning behavior of the final Xception model. Training and validation accuracy increased consistently while the corresponding losses decreased rapidly during the early epochs before stabilizing. These curves indicate successful optimization under the selected training configuration.
+
+---
+
+## 📊 Model Evaluation
+
+### Model Comparison
+
+<p align="center">
+    <img src="figures/model_comparison.PNG" width="850">
+</p>
+
+<p align="center">
+<i>Figure 1. Performance comparison of the five candidate CNN architectures.</i>
+</p>
+
+The candidate models exhibited different trade-offs across classification metrics. Xception achieved the highest Accuracy (83.49%), Precision (79.96%), Specificity (58.97%), and Balanced Accuracy (78.59%). VGG16 achieved the highest ROC-AUC (96.08%) and high Sensitivity (99.49%), but showed substantially lower Specificity (44.44%) and Balanced Accuracy (71.97%).
+
+### ROC-AUC Comparison
+
+<p align="center">
+    <img src="figures/roc_curve.png" width="850">
+</p>
+
+<p align="center">
+<i>Figure 2. ROC curve comparison across the five candidate architectures.</i>
+</p>
+
+ROC analysis demonstrates that all candidate models achieved discrimination above the random-classifier baseline, although their performance differed across decision thresholds. VGG16 achieved the highest ROC-AUC (0.9608), followed by BatchNorm CNN (0.9369) and Xception (0.9211).
+
+---
+
+## 🏆 Model Selection: Xception
+
+Model selection considered performance across multiple metrics rather than relying on a single evaluation measure.
+
+Although **VGG16 achieved the highest ROC-AUC (96.08%)**, its performance was less balanced at the selected classification threshold, particularly in terms of **Specificity (44.44%)** and **Balanced Accuracy (71.97%)**.
+
+In comparison, **Xception achieved the highest Balanced Accuracy (78.59%)**, together with the highest Accuracy (83.49%), Precision (79.96%), and Specificity (58.97%) among the five candidate models, while maintaining a strong ROC-AUC of 92.11%.
+
+Given the class imbalance in the dataset, this more balanced performance across sensitivity and specificity was prioritized over selecting the model with the highest ROC-AUC alone. Xception was therefore selected as the final model for integration into PneumoScan Junior.
+
+Grad-CAM analysis was subsequently used as a complementary qualitative assessment of model behavior and interpretability.
+
+---
+
+## 🧠 Final Xception Model
+
+Following comparative evaluation, Xception was selected as the final architecture for deployment.
+
+### Model Architecture
 
 ```text
                      Input Image
@@ -65,68 +132,44 @@ All models were trained using the same preprocessing pipeline and evaluated inde
                            │
                            ▼
                Pretrained Xception CNN
-              (Image Feature Extraction)
+                  (Feature Extraction)
                            │
                            ▼
-                      Flatten Layer
+                       Flatten
                            │
                            ▼
-                  Fully Connected (198)
+                      Dense (198)
                            │
                            ▼
-                  Fully Connected (128)
+                      Dense (128)
                            │
                            ▼
-                         Dropout
+                        Dropout
                            │
                            ▼
-                 Output Layer (Sigmoid)
+                  Dense (1, Sigmoid)
                            │
                            ▼
-          Normal        or       Pneumonia
+                 Normal / Pneumonia
 ```
 
-<p align="center">
-<i>Figure 1. Architecture of the final Xception model</i>
-</p>
+---
 
-## 📈 Training Process
-
+### Training Characteristics
 
 <p align="center">
     <img src="figures/training_curve.png" width="850">
 </p>
 
 <p align="center">
-<i>Figure 2. Training and validation loss and accuracy of the final Xception model.</i>
+<i>Figure 3. Training and validation loss and accuracy of the selected Xception model.</i>
 </p>
 
-Figure 2 illustrates the learning behavior of the final Xception model. Training and validation accuracy increased consistently while the corresponding losses decreased rapidly during the early epochs before stabilizing. These curves indicate successful optimization under the selected training configuration.
-
-
-
-
-
-## 📈 Model Evaluation
-
-Receiver Operating Characteristic (ROC) analysis was performed to evaluate the model's ability to distinguish between Normal and Pneumonia chest X-rays across different decision thresholds.
-
-<p align="center">
-    <img src="figures/roc_curve.png" width="850">
-</p>
-
-<p align="center">
-<i>Figure 3. Training and validation loss and accuracy of the final Xception model.</i>
-</p>
-
-Figure 3 compares the predictive performance of the five candidate architectures. Since the dataset is imbalanced, Balanced Accuracy and ROC-AUC were prioritized during model selection.
-
-Xception achieved the highest Accuracy (83.49%), Precision (79.96%), Specificity (58.97%), and Balanced Accuracy (78.59%). Although VGG16 produced the highest ROC-AUC (96.08%), its substantially lower specificity resulted in inferior Balanced Accuracy. Consequently, Xception was selected as the final deployment model.
-
+The training curves show rapid improvement during the early epochs, followed by stabilization of validation performance. These curves document the optimization behavior of the selected Xception model during its original training experiment.
 
 ---
 
-## 🔥 Explainability with Grad-CAM
+## 🔥 Explainability (Grad-CAM)
 
 To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-CAM) was incorporated into the development pipeline.
 
@@ -159,30 +202,14 @@ To complement the quantitative evaluation, Grad-CAM was used to visualize the im
 
 ---
 
-# 📓 Training Notebook
+## 📝 Conclusion
 
-The complete development workflow, including preprocessing, model training, evaluation, and Grad-CAM implementation, is documented in the accompanying Jupyter notebook. The notebook represents the original experiments used to produce the final deployed Xception model.
+Five CNN-based approaches were investigated for pediatric pneumonia classification, ranging from custom CNN architectures to pretrained transfer-learning models.
 
-```
-notebooks/Pneumonia_image_classification.ipynb
-```
+The experiments demonstrated that model selection based on a single metric would lead to different conclusions. VGG16 achieved the highest ROC-AUC, while Xception provided the strongest overall balance at the evaluated classification threshold, achieving the highest Balanced Accuracy, Accuracy, Precision, and Specificity among the candidate models.
 
-The notebook includes:
+Given the class imbalance and the project's emphasis on balanced classification performance, **Xception was selected as the final model for deployment in PneumoScan Junior**. Grad-CAM was incorporated to provide complementary visual insight into model predictions.
 
-- Exploratory Data Analysis (EDA)
-- Data preprocessing
-- Five CNN experiments
-- Hyperparameter configuration
-- Model training
-- Performance evaluation
-- Confusion matrices
-- ROC analysis
-- Grad-CAM implementation
-- Final model selection
+This project represents an experimental and educational implementation of deep learning for pediatric chest X-ray classification. The resulting model is not intended to replace clinical interpretation or serve as a validated medical diagnostic system.
 
-The notebook is preserved as an archival record of the original experiments that produced the deployed Xception model used by **PneumoScan Junior**.
-
-> **Note**
->
-> The notebook contained in this directory represents the original training pipeline used to develop the final model. Because deep learning training involves stochastic processes (random initialization, GPU nondeterminism, library versions, and data augmentation), rerunning the notebook may produce slightly different numerical results while maintaining similar overall performance trends.
 
