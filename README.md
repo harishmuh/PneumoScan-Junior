@@ -268,6 +268,7 @@ Significant architectural choices are recorded as ADRs in
 PneumoScan Junior is intended **for educational and research purposes only**.
 It is **not** a medical device and **must not** be used for clinical diagnosis or treatment decisions.
 
-## 📄 License
-
-Released under the Creative Commons NonCommercial (CC BY-NC 4.0).
+## 📄 Acknowledgments
+* Data: https://data.mendeley.com/datasets/rscbjbr9sj/2
+* License: Creative Commons NonCommercial (CC BY-NC 4.0)
+* Reference paper:  http://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
