@@ -1,12 +1,10 @@
 # 🧠 Model Development (under construction)
 
-This directory documents the development process of the deep learning model used in the **PneumoScan Junior App**.
+This directory documents the research and development process of the deep learning model used in the **PneumoScan Junior App**.
 
-Rather than selecting a single architecture from the outset, multiple convolutional neural network (CNN) models were developed, trained, evaluated, and compared using the same pediatric chest X-ray dataset. The objective was to identify a model that achieved strong classification performance while also providing meaningful explainability through Gradient-weighted Class Activation Mapping (Grad-CAM).
+Five convolutional neural network (CNN) architectures were developed and evaluated for automated pediatric pneumonia detection from chest X-ray images. Rather than selecting an architecture from the outset, each candidate model was trained using a consistent pipeline and compared using multiple evaluation metrics. The objective was to identify a model that achieved strong classification performance while also providing meaningful explainability through Gradient-weighted Class Activation Mapping (Grad-CAM).
 
-> **Note**
->
-> The notebook contained in this directory represents the original training pipeline used to develop the final model. Because deep learning training involves stochastic processes (random initialization, GPU nondeterminism, library versions, and data augmentation), rerunning the notebook may produce slightly different numerical results while maintaining similar overall performance trends.
+Because the dataset is imbalanced, Balanced Accuracy and ROC-AUC were considered the primary model selection criteria, while Accuracy, Precision, Sensitivity, and Specificity were used as supporting metrics.
 
 ---
 
@@ -31,7 +29,7 @@ The test set remained completely unseen during model development and was used on
 
 ## ⚙️ Preprocessing
 
-Prior to training, the following preprocessing pipeline was applied:
+Before training, the following preprocessing pipeline was applied:
 
 - Image resizing
 - Pixel normalization
@@ -39,11 +37,9 @@ Prior to training, the following preprocessing pipeline was applied:
 - Batch preparation using TensorFlow/Keras generators
 - Binary class encoding (Normal vs Pneumonia)
 
-Several experiments explored different preprocessing strategies to improve model generalization while reducing overfitting.
-
 ---
 
-## 🏗️ Five Candidate Models
+## 🏗️ Candidate Models
 
 Five CNN architectures were investigated throughout the development process.
 
@@ -55,48 +51,11 @@ Five CNN architectures were investigated throughout the development process.
 | VGG16 Transfer Learning | Transfer learning using the pretrained VGG16 architecture. |
 | Xception Transfer Learning | Transfer learning using the pretrained Xception architecture, which ultimately demonstrated the best overall performance. |
 
-Each model was trained and evaluated independently using identical evaluation metrics.
+All models were trained using the same preprocessing pipeline and evaluated independently using identical evaluation metrics.
 
 
 
 
----
-
-## 📊 Performance Comparison
-
-Model performance was assessed using multiple evaluation metrics rather than classification accuracy alone.
-
-Evaluation included:
-
-- Accuracy
-- Precision
-- Recall (Sensitivity)
-- Specificity
-- F1-score
-- ROC-AUC
-- Confusion Matrix
-- Grad-CAM explainability
-
-The comparison of multiple architectures helped ensure that the final model selection was based on overall predictive performance rather than a single metric.
-
-> *(Optional: Insert your comparison table or performance figure here.)*
-
----
-
-## ✅ Why Xception Was Selected
-
-Among the evaluated architectures, **Xception** demonstrated the strongest overall performance.
-
-The final model was selected because it provided:
-
-- High classification accuracy
-- Strong ROC-AUC performance
-- Balanced sensitivity and specificity
-- Stable validation performance
-- Better feature representation through transfer learning
-- Clear and interpretable Grad-CAM visualizations
-
-These characteristics made Xception the most suitable architecture for deployment within the PneumoScan Junior application.
 
 ---
 
@@ -104,47 +63,77 @@ These characteristics made Xception the most suitable architecture for deploymen
 
 The final model is based on the pretrained Xception architecture with a lightweight custom classification head.
 
-Input (224×224×3)
-        │
-        ▼
-Pretrained Xception
-(Feature Extraction)
-        │
-        ▼
-Flatten
-        │
-        ▼
-Dense (198)
-        │
-        ▼
-Dense (128)
-        │
-        ▼
-Dropout
-        │
-        ▼
-Sigmoid Output
 
 
-## Training curves
+```text
+                     Input Image
+                  (224 × 224 × 3)
+                           │
+                           ▼
+               Pretrained Xception CNN
+              (Image Feature Extraction)
+                           │
+                           ▼
+                      Flatten Layer
+                           │
+                           ▼
+                  Fully Connected (198)
+                           │
+                           ▼
+                  Fully Connected (128)
+                           │
+                           ▼
+                         Dropout
+                           │
+                           ▼
+                 Output Layer (Sigmoid)
+                           │
+                           ▼
+          Normal        or       Pneumonia
+```
 
-Figure Training curves
 
-The training history indicates rapid convergence within the first few epochs.
-
-Training and validation accuracy increased consistently, while the corresponding losses decreased and stabilized without evidence of severe overfitting.
 
 <p align="center">
-    <img src="figures/training curve.png" width="850">
+<img src="figures/https://github.com/user-attachments/assets/d2e3cecd-786e-47b9-82af-373c92fd2469" width="650">
+</p>
+
+<img width="424" height="216" alt="image" src="https://github.com/user-attachments/assets/4310d4b7-5b36-415d-90ff-bf9e4de2e5c7" />
+
+
+## 📈 Training Process
+
+
+<p align="center">
+    <img src="figures/training_curve.png" width="850">
 </p>
 
 <p align="center">
-<i>Figure 1. Training and validation loss and accuracy of the final Xception model.</i>
+<i>Figure 2. Training and validation loss and accuracy of the final Xception model.</i>
 </p>
 
-## ROC Curve
+Figure 2 illustrates the learning behavior of the final Xception model. Training and validation accuracy increased consistently while the corresponding losses decreased rapidly during the early epochs before stabilizing. These curves indicate successful optimization under the selected training configuration.
 
-Figure ROC curve
+
+
+
+
+## 📈 Model Evaluation
+
+Receiver Operating Characteristic (ROC) analysis was performed to evaluate the model's ability to distinguish between Normal and Pneumonia chest X-rays across different decision thresholds.
+
+<p align="center">
+    <img src="figures/roc_curve.png" width="850">
+</p>
+
+<p align="center">
+<i>Figure 3. Training and validation loss and accuracy of the final Xception model.</i>
+</p>
+
+Figure 3 compares the predictive performance of the five candidate architectures. Since the dataset is imbalanced, Balanced Accuracy and ROC-AUC were prioritized during model selection.
+
+Xception achieved the highest Accuracy (83.49%), Precision (79.96%), Specificity (58.97%), and Balanced Accuracy (78.59%). Although VGG16 produced the highest ROC-AUC (96.08%), its substantially lower specificity resulted in inferior Balanced Accuracy. Consequently, Xception was selected as the final deployment model.
+
 
 ---
 
@@ -159,7 +148,7 @@ This provides qualitative insight into model behavior and helps users better und
 ### True Positive Example
 
 <p align="center">
-    <img src="figures/pneumonia gradcam.png" width="1000">
+    <img src="figures/pneumonia_gradcam.png" width="1000">
 </p>
 
 <p align="center">
@@ -169,22 +158,24 @@ This provides qualitative insight into model behavior and helps users better und
 ### True Negative Example
 
 <p align="center">
-    <img src="figures/normal gradcam.png" width="1000">
+    <img src="figures/normal_gradcam.png" width="1000">
 </p>
 
 <p align="center">
 <i>Figure 5. Grad-CAM comparison for a correctly classified normal chest X-ray.</i>
 </p>
 
-Figure Grad CAM
+Figure Grad-CAM
 
 > Grad-CAM illustrates model attention rather than providing a definitive localization of disease and should not be interpreted as a clinical diagnosis.
+>
+To complement the quantitative evaluation, Grad-CAM was used to visualize the image regions contributing most strongly to each prediction. Compared with the other candidate architectures, Xception generally produced more localized and anatomically plausible activation patterns for both pneumonia and normal chest radiographs.
 
 ---
 
 # 📓 Training Notebook
 
-The complete development workflow is documented in:
+The complete development workflow, including preprocessing, model training, evaluation, and Grad-CAM implementation, is documented in the accompanying Jupyter notebook. The notebook represents the original experiments used to produce the final deployed Xception model.
 
 ```
 notebooks/Pneumonia_image_classification.ipynb
@@ -204,3 +195,8 @@ The notebook includes:
 - Final model selection
 
 The notebook is preserved as an archival record of the original experiments that produced the deployed Xception model used by **PneumoScan Junior**.
+
+> **Note**
+>
+> The notebook contained in this directory represents the original training pipeline used to develop the final model. Because deep learning training involves stochastic processes (random initialization, GPU nondeterminism, library versions, and data augmentation), rerunning the notebook may produce slightly different numerical results while maintaining similar overall performance trends.
+
