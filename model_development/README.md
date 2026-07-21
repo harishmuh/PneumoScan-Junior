@@ -15,15 +15,13 @@ The model was trained using a publicly available pediatric chest X-ray dataset c
 - Normal
 - Pneumonia
 
-The dataset consists of pediatric anterior–posterior chest radiographs collected for research purposes and is widely used for benchmarking deep learning models in pneumonia classification.
+The dataset was originally published in the journal [Cell Press](https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5) by Daniel S. Kermany and colleagues. The X-ray dataset contains chest radiographs (~5,900 images, JPEG format) of children aged one to five years old, collected from Guangzhou Women and Children’s Medical Center.
 
 The dataset was divided into:
 
 - Training set
 - Validation set
-- Test set
-
-The test set remained completely unseen during model development and was used only for final evaluation.
+- Test set (unseen data, only for final evaluation)
 
 ---
 
@@ -157,8 +155,6 @@ This provides qualitative insight into model behavior and helps users better und
 </p>
 
 
-> Grad-CAM illustrates model attention rather than providing a definitive localization of disease and should not be interpreted as a clinical diagnosis.
->
 To complement the quantitative evaluation, Grad-CAM was used to visualize the image regions contributing most strongly to each prediction. Compared with the other candidate architectures, Xception generally produced more localized and anatomically plausible activation patterns for both pneumonia and normal chest radiographs.
 
 ---
