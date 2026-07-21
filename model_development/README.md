@@ -134,7 +134,13 @@ The training history indicates rapid convergence within the first few epochs.
 
 Training and validation accuracy increased consistently, while the corresponding losses decreased and stabilized without evidence of severe overfitting.
 
+<p align="center">
+    <img src="figures/training curve.png" width="850">
+</p>
 
+<p align="center">
+<i>Figure 1. Training and validation loss and accuracy of the final Xception model.</i>
+</p>
 
 ## ROC Curve
 
@@ -149,6 +155,26 @@ To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-
 Grad-CAM generates visual heatmaps highlighting image regions that most strongly influenced the model's prediction.
 
 This provides qualitative insight into model behavior and helps users better understand the decision-making process.
+
+### True Positive Example
+
+<p align="center">
+    <img src="figures/pneumonia gradcam.png" width="1000">
+</p>
+
+<p align="center">
+<i>Figure 4. Grad-CAM comparison for a correctly classified pneumonia case.</i>
+</p>
+
+### True Negative Example
+
+<p align="center">
+    <img src="figures/normal gradcam.png" width="1000">
+</p>
+
+<p align="center">
+<i>Figure 5. Grad-CAM comparison for a correctly classified normal chest X-ray.</i>
+</p>
 
 Figure Grad CAM
 
