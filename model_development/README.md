@@ -15,7 +15,7 @@ The model was trained using a publicly available pediatric chest X-ray dataset c
 - Normal
 - Pneumonia
 
-The dataset was originally published in the journal [Cell Press](https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5) by Daniel S. Kermany and colleagues. The X-ray dataset contains chest radiographs (~5,900 images, JPEG format) of children aged one to five years old, collected from Guangzhou Women and Children’s Medical Center.
+The dataset was originally published in the journal [Cell Press](https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5) by Daniel S. Kermany and colleagues. The X-ray dataset contains chest radiographs (~5,900 images, JPEG format) of children aged one to five years old, collected from Guangzhou Women and Children’s Medical Center. The X-ray image dataset was made available through this [link](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia) (size ~ 2.3 Gb). 
 
 The dataset was divided into:
 
@@ -110,7 +110,7 @@ ROC analysis demonstrates that all candidate models achieved discrimination abov
 * In comparison, **Xception achieved the highest Balanced Accuracy (78.59%)**, together with the highest Accuracy (83.49%), Precision (79.96%), and Specificity (58.97%) among the five candidate models, while maintaining a strong ROC-AUC of 92.11%.
 * Given the class imbalance in the dataset, this more balanced performance across sensitivity and specificity was prioritized over selecting the model with the highest ROC-AUC alone. Xception was therefore selected as the final model for integration into PneumoScan Junior.
 * In addition, Grad-CAM analysis was subsequently used as a complementary qualitative assessment of model behavior and interpretability.
-
+* Selected final model ➡️ [Xception_final_model.keras](https://github.com/harishmuh/PneumoScan-Junior/releases/tag/v1.0.0) 
 ---
 
 ## 🧠 Final Xception Model
