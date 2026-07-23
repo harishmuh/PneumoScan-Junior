@@ -73,7 +73,7 @@ Beyond image classification, the application incorporates **Gradient-weighted Cl
        alt="PneumoScan Junior Demo"
        width="900">
 
-Try the application here: **🔗 https://pneumoscan-junior.streamlit.app**
+Try the application here (Desktop version): **🔗 https://pneumoscan-junior.streamlit.app**
 
 ---
 
