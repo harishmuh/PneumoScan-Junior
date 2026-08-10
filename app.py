@@ -188,11 +188,11 @@ if st.session_state.selected_image is None:
     st.info(
 
         """
-Please select one of the built-in sample images
+👆 **To do**: Please select one of the sample images or upload your own pediatric chest X-ray image.
 
-or
-
-Upload your own pediatric chest X-ray image.
+️️⚠️ **Supported Input**: PneumoScan Junior is designed for frontal **pediatric
+chest X-ray images only** & should not be used for
+other image types.
 """
 
     )
@@ -200,6 +200,13 @@ Upload your own pediatric chest X-ray image.
     render_footer()
 
     st.stop()
+
+st.info(
+    """
+⚠️ **Supported Input**: PneumoScan Junior is designed for frontal **pediatric
+chest X-ray images only** & should not be used for
+other image types.
+""")
 
 # ==========================================================
 # IMAGE PREVIEW
