@@ -79,7 +79,7 @@ Try the application here (Desktop version): **🔗 https://pneumoscan-junior.str
 
 ## 🧰 Tech Stack
 
-| Layer | Technology |
+| Layer | Tools |
 | --- | --- |
 | Language | Python 3.11 |
 | Deep Learning | TensorFlow 2.20 / Keras 3.13 |
