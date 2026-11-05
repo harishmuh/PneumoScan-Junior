@@ -110,7 +110,7 @@ ROC analysis demonstrates that all candidate models achieved discrimination abov
 * Given the class imbalance in the dataset, this more balanced performance across sensitivity and specificity was prioritized over selecting the model with the highest ROC-AUC alone. Xception was therefore selected as the final model for integration into PneumoScan Junior.
 * In addition, Grad-CAM analysis was subsequently used as a complementary qualitative assessment of model behavior and interpretability.
 * Selected final model ➡️ [Xception_final_model.keras](https://github.com/harishmuh/PneumoScan-Junior/releases/tag/v1.0.0) 
----
+
 
 ## 🧠 Final Xception Model
 
@@ -203,8 +203,8 @@ To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-
 
 * Given the class imbalance and the project's emphasis on balanced classification performance, **Xception was selected as the final model for deployment in PneumoScan Junior**. Grad-CAM was incorporated to provide complementary visual insight into model predictions.
 
-## 📂 Asset
-* Analysis and model development notebook  [Open notebook](https://colab.research.google.com/drive/1ZJ2zBgiVHpV7_QArFZUE5ofjx1KSzSJE?usp=sharing)
+## 🧠 Asset
+* Model development notebook and analysis ➡️ [Open notebook](https://colab.research.google.com/drive/1ZJ2zBgiVHpV7_QArFZUE5ofjx1KSzSJE?usp=sharing)
 
 ## ⚠️ Disclaimer
 This project represents an experimental and educational implementation of deep learning for pediatric chest X-ray classification. The resulting model is not intended to replace clinical interpretation or serve as a validated medical diagnostic system.
