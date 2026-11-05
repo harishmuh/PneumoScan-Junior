@@ -6,7 +6,7 @@ Five convolutional neural network (CNN) architectures were developed and evaluat
 
 Because the dataset is imbalanced, Balanced Accuracy and ROC-AUC were considered the primary model selection criteria, while Accuracy, Precision, Sensitivity, and Specificity were used as supporting metrics.
 
----
+
 
 ## 📂 Dataset
 
@@ -23,7 +23,7 @@ The dataset was divided into:
 - Validation set
 - Test set (unseen data, only for final evaluation)
 
----
+
 
 ## ⚙️ Preprocessing
 
@@ -35,7 +35,7 @@ Before training, the following preprocessing pipeline was applied:
 - Batch preparation using TensorFlow/Keras generators
 - Binary class encoding (Normal vs Pneumonia)
 
----
+
 
 ## 🏗️ Candidate Models
 
@@ -51,7 +51,6 @@ Five CNN architectures were investigated throughout the development process.
 
 The candidate architectures were evaluated under the experimental configurations documented in the training notebook. All models were assessed using the same set of classification metrics to enable performance comparison.
 
----
 
 ## 📈 Model Training
 
@@ -59,7 +58,7 @@ The candidate architectures were evaluated under the experimental configurations
 
 * Model performance was evaluated using Accuracy, Precision, Sensitivity, Specificity, Balanced Accuracy, and ROC-AUC. Because the dataset exhibits class imbalance, particular attention was given to Balanced Accuracy and ROC-AUC when comparing candidate models. Detailed training configurations and experimental outputs are preserved in the accompanying Jupyter notebook.
 
----
+
 
 ## 📈 Training Process
 
@@ -74,7 +73,7 @@ The candidate architectures were evaluated under the experimental configurations
 
 Figure 1 illustrates the learning behavior of the final Xception model. Training and validation accuracy increased consistently while the corresponding losses decreased rapidly during the early epochs before stabilizing. These curves indicate successful optimization under the selected training configuration.
 
----
+
 
 ## 📊 Model Evaluation
 
@@ -102,7 +101,7 @@ The candidate models exhibited different trade-offs across classification metric
 
 ROC analysis demonstrates that all candidate models achieved discrimination above the random-classifier baseline, although their performance differed across decision thresholds. VGG16 achieved the highest ROC-AUC (0.9608), followed by BatchNorm CNN (0.9369) and Xception (0.9211).
 
----
+
 
 ## 🏆 Model Selection: Xception
 
@@ -146,7 +145,7 @@ Following comparative evaluation, Xception was selected as the final architectur
                  Normal / Pneumonia
 ```
 
----
+
 
 ### Training Characteristics
 
@@ -160,7 +159,7 @@ Following comparative evaluation, Xception was selected as the final architectur
 
 The training curves show rapid improvement during the early epochs, followed by stabilization of validation performance. These curves document the optimization behavior of the selected Xception model during its original training experiment.
 
----
+
 
 ## 🔥 Explainability (Grad-CAM)
 
@@ -194,7 +193,7 @@ To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-
 * These visualizations were used as complementary interpretability evidence rather than as a quantitative measure of model performance. Grad-CAM does not establish that the model learned clinically valid diagnostic reasoning, but it provides insight into the image regions associated with individual predictions.
 
 
----
+
 
 ## 📝 Conclusion
 
@@ -203,6 +202,9 @@ To improve model transparency, Gradient-weighted Class Activation Mapping (Grad-
 * The experiments demonstrated that model selection based on a single metric would lead to different conclusions. VGG16 achieved the highest ROC-AUC, while Xception provided the strongest overall balance at the evaluated classification threshold, achieving the highest Balanced Accuracy, Accuracy, Precision, and Specificity among the candidate models.
 
 * Given the class imbalance and the project's emphasis on balanced classification performance, **Xception was selected as the final model for deployment in PneumoScan Junior**. Grad-CAM was incorporated to provide complementary visual insight into model predictions.
+
+## 📂 Asset
+* Analysis and model development notebook  [Open notebook](https://colab.research.google.com/drive/1ZJ2zBgiVHpV7_QArFZUE5ofjx1KSzSJE?usp=sharing)
 
 ## ⚠️ Disclaimer
 This project represents an experimental and educational implementation of deep learning for pediatric chest X-ray classification. The resulting model is not intended to replace clinical interpretation or serve as a validated medical diagnostic system.
