@@ -41,7 +41,7 @@ AI-powered web application for automatic pediatric chest X-ray classification us
 - [Architecture Decisions](#-architecture-decisions)
 - [Disclaimer](#-disclaimer)
 - [License](#-license)
-
+- [Assets](#-assets)
 ---
 
 ## 📖 Project Overview
@@ -300,6 +300,10 @@ It is **not** a medical device and **must not** be used for clinical diagnosis o
 
 ---
 
+## 🗂️ Assets
+* PneumoScan Junior - Model development: [slide](https://docs.google.com/presentation/d/1eQeWfk3claIOPj8lLPW37AdwrsSh2cLfqFjZL5ELwHk/edit?usp=sharing) 
+
+---
 ## 📄 Acknowledgments
 * Data: https://data.mendeley.com/datasets/rscbjbr9sj/2
 * License: Creative Commons NonCommercial (CC BY-NC 4.0)
