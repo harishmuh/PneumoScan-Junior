@@ -267,7 +267,7 @@ Run `make help` to see this list at any time.
 | `make dev-logs` | Follow dev container logs |
 | `make dev-exec` | Open a shell inside the dev container |
 
----
+
 
 ## 🧠 The Trained Model
 
@@ -283,7 +283,7 @@ and resolved in one of three ways:
 
 This means the app works whether or not you already have the model on disk.
 
----
+
 
 ## 📐 Architecture Decisions
 
@@ -291,19 +291,18 @@ Significant architectural choices are recorded as ADRs in
 [`docs/adr/`](docs/adr/), including
 [why dev and prod share a single multi-stage Dockerfile](docs/adr/0001-single-multistage-dockerfile-for-dev-and-prod.md).
 
----
 
 ## ⚠️ Disclaimer
 
 PneumoScan Junior is intended **for educational and research purposes only**.
 It is **not** a medical device and **must not** be used for clinical diagnosis or treatment decisions.
 
----
+
 
 ## 🗂️ Assets
 * PneumoScan Junior - Model development: [slide](https://docs.google.com/presentation/d/1eQeWfk3claIOPj8lLPW37AdwrsSh2cLfqFjZL5ELwHk/edit?usp=sharing) 
 
----
+
 ## 📄 Acknowledgments
 * Data: https://data.mendeley.com/datasets/rscbjbr9sj/2
 * License: Creative Commons NonCommercial (CC BY-NC 4.0)
